@@ -1,102 +1,189 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>GitHub 个人主页 - ChaoJiMaShu</title>
+    <title>Persona Portfolio</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
+        * {
             margin: 0;
             padding: 0;
-            color: #333;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
         }
-        header {
-            background-color: #24292f;
-            color: white;
-            padding: 20px 0;
-            text-align: center;
+
+        body {
+            background-color: #000;
+            color: #fff;
+            overflow-x: hidden;
         }
-        header h1 {
-            margin: 0;
+
+        /* 动态斜线背景 */
+        .container::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                #c40714 0px,
+                #c40714 50px,
+                #000 50px,
+                #000 100px
+            );
+            opacity: 0.1;
+            z-index: -1;
+            animation: slide 20s linear infinite;
         }
-        .container {
-            width: 80%;
-            margin: 20px auto;
+
+        @keyframes slide {
+            from { transform: translateX(-50%) translateY(-50%) rotate(45deg); }
+            to { transform: translateX(0%) translateY(0%) rotate(45deg); }
         }
-        .section-title {
-            font-size: 1.5em;
-            color: #2d333b;
+
+        /* 导航栏 */
+        nav {
+            background-color: #c40714;
+            padding: 1rem;
+            box-shadow: 0 0 20px rgba(196,7,20,0.5);
         }
-        .section-content {
-            margin-top: 10px;
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            list-style: none;
         }
-        .project-list, .social-links {
-            list-style-type: none;
-            padding-left: 0;
-        }
-        .project-list li, .social-links li {
-            margin: 10px 0;
-        }
-        .social-links a {
+
+        nav a {
+            color: #fff;
             text-decoration: none;
-            color: #0366d6;
+            font-weight: bold;
+            text-transform: uppercase;
+            padding: 0.5rem 1rem;
+            transition: 0.3s;
         }
-        footer {
-            background-color: #24292f;
-            color: white;
+
+        nav a:hover {
+            background-color: #000;
+            clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
+        }
+
+        /* 主内容区域 */
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 2rem;
+            position: relative;
+            border: 3px solid #c40714;
+            background-color: rgba(0,0,0,0.9);
+        }
+
+        /* 个人资料区 */
+        .profile {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .avatar {
+            border: 3px solid #c40714;
+            clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
+            transition: 0.3s;
+        }
+
+        .avatar:hover {
+            transform: rotate(5deg);
+        }
+
+        /* 链接按钮 */
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .persona-btn {
+            background: #000;
+            border: 2px solid #c40714;
+            color: #fff;
+            padding: 1.5rem;
             text-align: center;
-            padding: 10px 0;
-            position: fixed;
+            text-transform: uppercase;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .persona-btn:hover {
+            background: #c40714;
+            color: #000;
+            transform: scale(1.05);
+        }
+
+        .persona-btn::after {
+            content: '';
+            position: absolute;
             width: 100%;
+            height: 2px;
+            background: #fff;
             bottom: 0;
+            left: -100%;
+            transition: 0.3s;
+        }
+
+        .persona-btn:hover::after {
+            left: 0;
+        }
+        
+        /* 标题样式 */
+        h1, h2 {
+            color: #c40714;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 0 10px rgba(196,7,20,0.5);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            clip-path: polygon(0 0, 100% 0, 95% 100%, 5% 100%);
+            background: #000;
+            padding: 1rem 2rem;
+            display: inline-block;
         }
     </style>
 </head>
 <body>
-
-    <header>
-        <h1>你好！我是 [ChaoJiMaShu]</h1>
-        <p>大连理工大学 本科</p>
-    </header>
+    <nav>
+        <ul>
+            <li><a href="#">主页</a></li>
+            <li><a href="#">档案</a></li>
+            <li><a href="#">作品集</a></li>
+            <li><a href="#">联络</a></li>
+        </ul>
+    </nav>
 
     <div class="container">
-        <section>
-            <h2 class="section-title">关于我</h2>
-            <p class="section-content">
-                我是一名热衷于编程和技术的开发者，喜欢与志同道合的朋友一起创造有趣的项目。
-                目前，我专注于以下内容：
-                <ul>
-                    <li>Python、Java、C</li>
-                    <li>11408</li>
-                </ul>
-            </p>
+        <h1>Phantom Thieves' Portfolio</h1>
+        
+        <section class="profile">
+            <img src="avatar.jpg" alt="Avatar" class="avatar" width="300">
+            <div>
+                <h2>✦ 代号：ChaoJiMaShu ✦</h2>
+                <p>「大连理工大学怪盗团」核心成员</p>
+                <p>能力：Java，JavaScript，C</p>
+                <p>武器：文字与代码的双刃</p>
+            </div>
         </section>
 
-        <section>
-            <h2 class="section-title">我的项目</h2>
-            <ul class="project-list">
-                <li><a href="项目链接1" target="_blank">项目名称 1</a> - 项目简介</li>
-                <li><a href="项目链接2" target="_blank">项目名称 2</a> - 项目简介</li>
-                <li><a href="项目链接3" target="_blank">项目名称 3</a> - 项目简介</li>
-            </ul>
-        </section>
-
-        <section>
-            <h2 class="section-title">社交媒体</h2>
-            <ul class="social-links">
-                <li><a href="https://twitter.com/你的用户名" target="_blank">Twitter</a></li>
-                <li><a href="https://www.linkedin.com/in/你的用户名" target="_blank">LinkedIn</a></li>
-                <li><a href="https://你的博客链接" target="_blank">博客</a></li>
-            </ul>
+        <section class="links-grid">
+            <div class="persona-btn">✦ 人格面具 ✦</div>
+            <div class="persona-btn">✦ 技能展示 ✦</div>
+            <div class="persona-btn">✦ 战利品 ✦</div>
+            <div class="persona-btn">✦ 异世界导航 ✦</div>
         </section>
     </div>
-
-    <footer>
-        <p>&copy; 2025 [ChaoJiMaShu]. All Rights Reserved.</p>
-    </footer>
-
 </body>
 </html>
